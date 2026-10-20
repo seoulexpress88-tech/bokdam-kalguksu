@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>복담칼국수</title>
+<meta name="description" content="송파 가락동 경찰병원역 앞, 시원한 해물칼국수와 매생이굴죽을 내는 복담칼국수">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f1e7;
+    --paper-2: #efe7d8;
+    --ink: #1d2a2c;
+    --ink-soft: #55615f;
+    --sea: #1f4e4f;
+    --sea-deep: #143536;
+    --brass: #b0843c;
+    --brass-soft: #e9d7b3;
+    --line: #d9cfbd;
+    --card: #fffdf8;
+    --on-sea: #f6f1e7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #121a1b;
+      --paper-2: #182223;
+      --ink: #ece6da;
+      --ink-soft: #a6ada8;
+      --sea: #2b6a6a;
+      --sea-deep: #0d2425;
+      --brass: #d3a95e;
+      --brass-soft: #3a3020;
+      --line: #2c3a3a;
+      --card: #1a2425;
+      --on-sea: #f6f1e7;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #121a1b;
+    --paper-2: #182223;
+    --ink: #ece6da;
+    --ink-soft: #a6ada8;
+    --sea: #2b6a6a;
+    --sea-deep: #0d2425;
+    --brass: #d3a95e;
+    --brass-soft: #3a3020;
+    --line: #2c3a3a;
+    --card: #1a2425;
+    --on-sea: #f6f1e7;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Sans KR", system-ui, sans-serif;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+  /* 상단 바 */
+  .bar {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .logo { font-family: "Noto Serif KR", serif; font-weight: 900; font-size: 20px; text-decoration: none; letter-spacing: .02em; }
+  .logo span { color: var(--brass); }
+  .bar nav { display: flex; gap: 20px; font-size: 14px; }
+  .bar nav a { text-decoration: none; color: var(--ink-soft); }
+  .bar nav a:hover { color: var(--ink); }
+
+  /* 히어로 */
+  .hero {
+    background: var(--sea-deep);
+    color: var(--on-sea);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: center; padding-top: 72px; padding-bottom: 96px; }
+  .eyebrow { font-size: 13px; letter-spacing: .2em; color: var(--brass-soft); margin: 0 0 16px; }
+  :root[data-theme="dark"] .eyebrow { color: var(--brass); }
+  .hero h1 {
+    font-family: "Noto Serif KR", serif; font-weight: 900;
+    font-size: clamp(40px, 7vw, 72px); line-height: 1.15; margin: 0 0 20px;
+  }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero p.lead { font-size: 17px; opacity: .85; margin: 0 0 32px; max-width: 30em; }
+  .status {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; padding: 6px 14px; border-radius: 999px;
+    border: 1px solid rgba(246,241,231,.25); margin-bottom: 24px;
+  }
+  .status i { width: 8px; height: 8px; border-radius: 50%; background: #9aa5a3; }
+  .status.open i { background: #6fd39b; box-shadow: 0 0 0 4px rgba(111,211,155,.2); }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: 10px; font-weight: 700; font-size: 15px;
+    text-decoration: none; border: 1px solid transparent; cursor: pointer; font-family: inherit;
+  }
+  .btn.primary { background: var(--brass); color: #1b1408; }
+  .btn.ghost { border-color: rgba(246,241,231,.35); color: var(--on-sea); background: transparent; }
+  .btn:hover { filter: brightness(1.06); }
+
+  .bowl { width: 100%; max-width: 380px; justify-self: center; }
+  .waves { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 60px; display: block; }
+  .waves path { fill: var(--paper); }
+
+  /* 섹션 공통 */
+  section.block { padding: 88px 0; scroll-margin-top: 56px; }
+  .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; }
+  .sec-head h2 { font-family: "Noto Serif KR", serif; font-size: clamp(26px, 4vw, 34px); margin: 0; }
+  .sec-head span { color: var(--brass); font-size: 13px; letter-spacing: .2em; }
+
+  /* 소개 */
+  .points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .point { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 28px 24px; }
+  .point .num { font-family: "Noto Serif KR", serif; color: var(--brass); font-weight: 900; font-size: 28px; }
+  .point h3 { margin: 6px 0 8px; font-size: 18px; }
+  .point p { margin: 0; color: var(--ink-soft); font-size: 15px; }
+
+  /* 메뉴 */
+  #menu { background: var(--paper-2); }
+  .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .menu-col h3 { font-size: 15px; color: var(--ink-soft); font-weight: 500; margin: 0 0 8px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
+  .menu-list { list-style: none; margin: 0; padding: 0; }
+  .menu-list li { display: flex; align-items: baseline; gap: 10px; padding: 16px 0; border-bottom: 1px dashed var(--line); }
+  .menu-list .name { font-weight: 700; font-size: 17px; }
+  .menu-list .dots { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-4px); }
+  .menu-list .price { font-family: "Noto Serif KR", serif; font-weight: 700; white-space: nowrap; }
+  .tag { font-size: 11px; font-weight: 700; color: var(--brass); border: 1px solid var(--brass); border-radius: 4px; padding: 1px 6px; margin-left: 6px; vertical-align: 2px; white-space: nowrap; }
+  .menu-note { margin-top: 24px; font-size: 13px; color: var(--ink-soft); }
+
+  /* 후기 */
+  .quote {
+    background: var(--sea); color: var(--on-sea); border-radius: 20px;
+    padding: 40px; text-align: center;
+  }
+  .quote blockquote { margin: 0; font-family: "Noto Serif KR", serif; font-size: clamp(20px, 3vw, 28px); font-weight: 700; }
+  .quote cite { display: block; margin-top: 16px; font-style: normal; font-size: 14px; opacity: .75; }
+  .chips { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .chips span { font-size: 13px; padding: 4px 12px; border-radius: 999px; background: rgba(246,241,231,.12); }
+
+  /* 오시는 길 */
+  .info { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .info-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
+  .info-card h3 { margin: 0 0 16px; font-size: 16px; color: var(--ink-soft); font-weight: 500; }
+  .info-card dl { margin: 0; display: grid; grid-template-columns: 76px 1fr; row-gap: 12px; }
+  .info-card dt { color: var(--ink-soft); font-size: 14px; }
+  .info-card dd { margin: 0; font-weight: 500; }
+  .hours { list-style: none; margin: 0; padding: 0; }
+  .hours li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .hours li:last-child { border-bottom: 0; }
+  .hours li.today { color: var(--brass); font-weight: 700; }
+  .hours .off { color: var(--ink-soft); }
+  .copy {
+    margin-left: 6px; font-size: 12px; padding: 2px 8px; border-radius: 6px;
+    border: 1px solid var(--line); background: transparent; color: var(--ink-soft); cursor: pointer; font-family: inherit;
+  }
+  .info-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .info-actions .btn { background: var(--sea); color: var(--on-sea); }
+  .info-actions .btn.line { background: transparent; color: var(--ink); border-color: var(--line); }
+
+  /* 후기 목록 */
+  .review-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+  .review { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .review .stars { color: var(--brass); letter-spacing: 2px; }
+  .review p { margin: 8px 0 12px; }
+  .review small { color: var(--ink-soft); }
+  .empty { color: var(--ink-soft); font-size: 15px; margin-top: 24px; }
+
+  /* 폼 */
+  .form-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; margin-top: 32px; }
+  .form-card h3 { margin: 0 0 4px; font-size: 18px; }
+  .form-card > p { margin: 0 0 20px; color: var(--ink-soft); font-size: 14px; }
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .fields .full { grid-column: 1 / -1; }
+  .f { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--ink-soft); }
+  label.f input, label.f textarea, label.f select {
+    font: inherit; color: var(--ink); background: var(--paper);
+    border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%;
+  }
+  label.f textarea { resize: vertical; min-height: 88px; }
+  label.f input:focus, label.f textarea:focus, label.f select:focus { outline: 2px solid var(--brass); outline-offset: 1px; }
+  .rating-pick { display: flex; gap: 4px; }
+  .rating-pick button {
+    font-size: 26px; line-height: 1; background: none; border: 0; padding: 2px; cursor: pointer; color: var(--line);
+  }
+  .rating-pick button.on { color: var(--brass); }
+  .consent { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--ink-soft); }
+  .consent input { margin-top: 4px; }
+  .form-foot { display: flex; align-items: center; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
+  .form-foot .btn { background: var(--sea); color: var(--on-sea); }
+  .form-foot .btn:disabled { opacity: .6; cursor: default; }
+  .form-msg { font-size: 14px; }
+  .form-msg.err { color: #c0533a; }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; font-size: 13px; color: var(--ink-soft); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px);
+    background: var(--ink); color: var(--paper); padding: 10px 18px; border-radius: 999px;
+    font-size: 14px; opacity: 0; transition: .25s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 760px) {
+    .bar nav { gap: 14px; font-size: 13px; }
+    .hero .wrap { grid-template-columns: 1fr; padding-top: 48px; padding-bottom: 80px; }
+    .bowl { max-width: 240px; order: -1; }
+    .points, .menu-grid, .info, .review-list, .fields { grid-template-columns: 1fr; }
+    .form-card { padding: 22px 18px; }
+    .menu-grid { gap: 32px; }
+    section.block { padding: 64px 0; }
+    .quote { padding: 36px 20px; }
+  }
+  @media (max-width: 400px) {
+    .bar nav { gap: 10px; }
+    .logo { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top">복담<span>·</span>칼국수</a>
+    <nav>
+      <a href="#menu">메뉴</a>
+      <a href="#reviews">후기</a>
+      <a href="#inquiry">문의</a>
+      <a href="#visit">오시는 길</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">송파 가락동 · 경찰병원역</p>
+        <h1>바다를 담은<br><em>한 그릇</em></h1>
+        <p class="lead">조개와 가리비를 듬뿍 넣고 끓인 시원한 해물칼국수, 속이 편안한 매생이굴죽, 놋그릇에 담아 내는 속초식 해초비빔밥을 만나 보세요.</p>
+        <div class="status" id="status"><i></i><span>영업 정보 확인 중</span></div>
+        <div class="cta">
+          <a class="btn primary" href="#menu">메뉴 보기</a>
+          <a class="btn ghost" href="tel:02-326-2628">전화 02-326-2628</a>
+        </div>
+      </div>
+      <svg class="bowl" viewBox="0 0 320 260" role="img" aria-label="김이 오르는 칼국수 그릇 그림">
+        <g fill="none" stroke="#e9d7b3" stroke-width="4" stroke-linecap="round" opacity=".7">
+          <path d="M120 70c-12-16 12-24 0-44"/>
+          <path d="M160 64c-12-16 12-24 0-44"/>
+          <path d="M200 70c-12-16 12-24 0-44"/>
+        </g>
+        <ellipse cx="160" cy="118" rx="140" ry="26" fill="#d3a95e"/>
+        <ellipse cx="160" cy="118" rx="126" ry="19" fill="#f2e6cc"/>
+        <g fill="none" stroke="#e7d4ad" stroke-width="3">
+          <path d="M60 116c30-8 60 8 90 0s60-8 90 0 30 4 30 4"/>
+          <path d="M70 124c30-6 60 6 90 0s60-6 80 0"/>
+        </g>
+        <path d="M118 108q10-14 22 0z" fill="#6f8f8a"/>
+        <path d="M176 104q12-16 26 0z" fill="#3e6b66"/>
+        <circle cx="150" cy="120" r="5" fill="#2e5b4a"/>
+        <path d="M20 118c8 70 64 106 140 106s132-36 140-106" fill="#b0843c"/>
+        <path d="M40 140c18 46 64 70 120 70s102-24 120-70" fill="none" stroke="#d3a95e" stroke-width="3" opacity=".6"/>
+        <rect x="118" y="222" width="84" height="14" rx="4" fill="#8a6528"/>
+      </svg>
+    </div>
+    <svg class="waves" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 30c120 20 240 20 360 0s240-20 360 0 240 20 360 0 240-20 360 0v30H0z"/>
+    </svg>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="sec-head"><h2>복담의 한 그릇</h2><span>ABOUT</span></div>
+      <div class="points">
+        <div class="point">
+          <div class="num">01</div>
+          <h3>푸짐한 해산물</h3>
+          <p>조개와 가리비, 미역이 넉넉하게 들어가 큰 대접 가득 담겨 나옵니다.</p>
+        </div>
+        <div class="point">
+          <div class="num">02</div>
+          <h3>시원한 국물</h3>
+          <p>해물로 우려낸 맑고 시원한 국물. 마지막 한 숟가락까지 비우게 됩니다.</p>
+        </div>
+        <div class="point">
+          <div class="num">03</div>
+          <h3>속 편한 한 끼</h3>
+          <p>매생이굴죽과 해초비빔밥처럼 부담 없이 먹을 수 있는 메뉴도 준비했습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="menu">
+    <div class="wrap">
+      <div class="sec-head"><h2>메뉴</h2><span>MENU</span></div>
+      <div class="menu-grid">
+        <div class="menu-col">
+          <h3>단품</h3>
+          <ul class="menu-list" id="menu-single">
+            <li><span class="name">해물칼국수<span class="tag">사장님 추천</span></span><span class="dots"></span><span class="price">10,000원</span></li>
+            <li><span class="name">매생이굴죽<span class="tag">사장님 추천</span></span><span class="dots"></span><span class="price">10,000원</span></li>
+            <li><span class="name">해물수제비</span><span class="dots"></span><span class="price">10,000원</span></li>
+            <li><span class="name">속초식 해초비빔밥</span><span class="dots"></span><span class="price">10,000원</span></li>
+            <li><span class="name">수제 굴림만두</span><span class="dots"></span><span class="price">7,000원</span></li>
+          </ul>
+        </div>
+        <div class="menu-col">
+          <h3>굴림만두 세트 · 만두 2개 포함</h3>
+          <ul class="menu-list" id="menu-set">
+            <li><span class="name">해물칼국수 + 굴림만두</span><span class="dots"></span><span class="price">12,000원</span></li>
+            <li><span class="name">매생이굴죽 + 굴림만두</span><span class="dots"></span><span class="price">12,000원</span></li>
+            <li><span class="name">속초식 해초비빔밥 + 굴림만두</span><span class="dots"></span><span class="price">12,000원</span></li>
+          </ul>
+          <p class="menu-note">메뉴와 가격은 매장 사정에 따라 달라질 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="reviews">
+    <div class="wrap">
+      <div class="sec-head"><h2>방문 후기</h2><span>REVIEWS</span></div>
+      <div class="quote">
+        <blockquote>“국물이 너무 시원해서 완뚝”</blockquote>
+        <cite>카카오맵 방문 후기 · 해물칼국수</cite>
+        <div class="chips"><span>맛</span><span>가성비</span><span>친절</span><span>주차</span></div>
+      </div>
+      <div class="review-list" id="review-list"></div>
+      <p class="empty" id="review-empty" hidden>아직 남겨진 후기가 없어요. 첫 후기를 남겨 주세요!</p>
+
+      <form class="form-card" id="review-form" novalidate>
+        <h3>후기 남기기</h3>
+        <p>드셔 보신 메뉴는 어떠셨나요? 한 줄이면 충분해요.</p>
+        <div class="fields">
+          <label class="f">이름 (닉네임)
+            <input name="name" maxlength="20" required autocomplete="nickname">
+          </label>
+          <div class="f">
+            <span>별점</span>
+            <div class="rating-pick" id="rating-pick" role="radiogroup" aria-label="별점"></div>
+          </div>
+          <label class="f full">후기
+            <textarea name="content" maxlength="300" required placeholder="예) 해물칼국수 국물이 정말 시원해요!"></textarea>
+          </label>
+        </div>
+        <div class="form-foot">
+          <button class="btn" type="submit">후기 등록</button>
+          <span class="form-msg" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="block" id="inquiry" style="background:var(--paper-2)">
+    <div class="wrap">
+      <div class="sec-head"><h2>예약 · 단체 문의</h2><span>RESERVATION</span></div>
+      <form class="form-card" id="inquiry-form" novalidate style="margin-top:0">
+        <h3>방문 예약 / 단체 문의</h3>
+        <p>남겨 주시면 확인 후 연락드릴게요. 급한 문의는 <a href="tel:02-326-2628">02-326-2628</a>로 전화 주세요.</p>
+        <div class="fields">
+          <label class="f">이름
+            <input name="name" maxlength="20" required autocomplete="name">
+          </label>
+          <label class="f">연락처
+            <input name="phone" type="tel" inputmode="tel" required placeholder="010-1234-5678" autocomplete="tel">
+          </label>
+          <label class="f">방문 날짜
+            <input name="visit_date" type="date" required>
+          </label>
+          <label class="f">인원
+            <input name="party_size" type="number" min="1" max="100" value="2" required>
+          </label>
+          <label class="f full">요청 사항 (선택)
+            <textarea name="message" maxlength="500" placeholder="예) 12시 30분쯤 8명 방문 예정이에요."></textarea>
+          </label>
+          <label class="consent full">
+            <input type="checkbox" name="consent" required>
+            <span>예약 확인 연락을 위해 이름·연락처를 수집하는 데 동의합니다. 수집한 정보는 문의 처리 후 파기합니다.</span>
+          </label>
+        </div>
+        <div class="form-foot">
+          <button class="btn" type="submit">문의 보내기</button>
+          <span class="form-msg" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="block" id="visit">
+    <div class="wrap">
+      <div class="sec-head"><h2>오시는 길</h2><span>VISIT</span></div>
+      <div class="info">
+        <div class="info-card">
+          <h3>매장 정보</h3>
+          <dl>
+            <dt>주소</dt>
+            <dd>서울 송파구 중대로 135<br>아이티벤처타워 지하1층 B126호 <button class="copy" data-copy="서울 송파구 중대로 135 아이티벤처타워 지하1층 B126호">복사</button></dd>
+            <dt>지하철</dt>
+            <dd>3호선 경찰병원역 1번 출구 도보 3분</dd>
+            <dt>전화</dt>
+            <dd><a href="tel:02-326-2628">02-326-2628</a></dd>
+            <dt>주차</dt>
+            <dd>무료 주차 가능</dd>
+          </dl>
+          <div class="info-actions">
+            <a class="btn" href="https://place.map.kakao.com/527324382" target="_blank" rel="noopener">카카오맵</a>
+            <a class="btn line" href="https://naver.me/xUZjd9kP" target="_blank" rel="noopener">네이버 지도</a>
+          </div>
+        </div>
+        <div class="info-card">
+          <h3>영업시간</h3>
+          <ul class="hours" id="hours">
+            <li data-day="1"><span>월요일</span><span>11:00 – 15:00</span></li>
+            <li data-day="2"><span>화요일</span><span>11:00 – 15:00</span></li>
+            <li data-day="3"><span>수요일</span><span>11:00 – 15:00</span></li>
+            <li data-day="4"><span>목요일</span><span>11:00 – 15:00</span></li>
+            <li data-day="5"><span>금요일</span><span>11:00 – 15:00</span></li>
+            <li data-day="6"><span>토요일</span><span class="off">휴무</span></li>
+            <li data-day="0"><span>일요일</span><span class="off">휴무</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>복담칼국수 · 서울 송파구 중대로 135 B1 B126호</span>
+    <span>02-326-2628</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="config.js"></script>
+<script>
+  // ── Supabase 설정은 config.js 에서 관리 ──
+  const { url: SUPABASE_URL, publishableKey: SUPABASE_KEY } = window.SUPABASE_CONFIG;
+
+  async function db(path, { method = 'GET', body } = {}) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+      method,
+      headers: {
+        apikey: SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        ...(method === 'POST' ? { Prefer: 'return=minimal' } : {})
+      },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    if (!res.ok) throw new Error((await res.json().catch(() => ({}))).message || res.statusText);
+    return method === 'GET' ? res.json() : null;
+  }
+
+  const DAY_NAMES = ['일', '월', '화', '수', '목', '금', '토'];
+  const won = n => n.toLocaleString('ko-KR') + '원';
+  const toMin = t => { const [h, m] = t.split(':'); return +h * 60 + +m; };
+  const hhmm = t => t.slice(0, 5);
+  const el = (tag, cls, text) => {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  };
+
+  // ── 영업시간 (DB 연결 전·실패 시 이 기본값 사용) ──
+  let hours = [0, 1, 2, 3, 4, 5, 6].map(d => (d >= 1 && d <= 5
+    ? { day_of_week: d, open_time: '11:00', close_time: '15:00', is_closed: false }
+    : { day_of_week: d, open_time: null, close_time: null, is_closed: true }));
+  const openOn = d => {
+    const h = hours.find(x => x.day_of_week === d);
+    return h && !h.is_closed && h.open_time && h.close_time ? h : null;
+  };
+
+  function nowKST() {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Seoul', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+    }).formatToParts(new Date());
+    const get = t => parts.find(p => p.type === t).value;
+    const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(get('weekday'));
+    return { day, min: +get('hour') * 60 + +get('minute') };
+  }
+
+  function renderHours() {
+    document.getElementById('hours').replaceChildren(...[1, 2, 3, 4, 5, 6, 0].map(d => {
+      const h = openOn(d);
+      const li = el('li');
+      li.dataset.day = d;
+      li.append(el('span', null, DAY_NAMES[d] + '요일'),
+                h ? el('span', null, `${hhmm(h.open_time)} – ${hhmm(h.close_time)}`) : el('span', 'off', '휴무'));
+      return li;
+    }));
+  }
+
+  function updateStatus() {
+    const { day, min } = nowKST();
+    const box = document.getElementById('status');
+    const label = box.querySelector('span');
+    const today = openOn(day);
+    const open = !!today && min >= toMin(today.open_time) && min < toMin(today.close_time);
+    box.classList.toggle('open', open);
+    if (open) {
+      label.textContent = `지금 영업 중 · ${hhmm(today.close_time)}까지`;
+    } else if (today && min < toMin(today.open_time)) {
+      label.textContent = `영업 전 · 오늘 ${hhmm(today.open_time)} 오픈`;
+    } else {
+      let step = 1;
+      while (step <= 7 && !openOn((day + step) % 7)) step++;
+      const next = openOn((day + step) % 7);
+      const name = step === 1 ? '내일' : DAY_NAMES[(day + step) % 7] + '요일';
+      label.textContent = next ? `영업 종료 · ${name} ${hhmm(next.open_time)} 오픈` : '영업 종료';
+    }
+    document.querySelectorAll('#hours li').forEach(li => li.classList.toggle('today', +li.dataset.day === day));
+  }
+
+  // ── 메뉴 ──
+  function renderMenu(items) {
+    const row = it => {
+      const li = el('li');
+      const name = el('span', 'name', it.name);
+      if (it.is_recommended) name.append(el('span', 'tag', '사장님 추천'));
+      li.append(name, el('span', 'dots'), el('span', 'price', won(it.price)));
+      return li;
+    };
+    for (const cat of ['single', 'set']) {
+      const list = items.filter(i => i.category === cat);
+      if (list.length) document.getElementById('menu-' + cat).replaceChildren(...list.map(row));
+    }
+  }
+
+  // ── 후기 ──
+  async function loadReviews() {
+    const reviews = await db('reviews?select=name,rating,content,created_at&order=created_at.desc&limit=6');
+    document.getElementById('review-empty').hidden = reviews.length > 0;
+    document.getElementById('review-list').replaceChildren(...reviews.map(r => {
+      const card = el('article', 'review');
+      const s = el('div', 'stars', '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating));
+      s.setAttribute('aria-label', `별점 ${r.rating}점`);
+      const date = new Date(r.created_at).toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul' });
+      card.append(s, el('p', null, r.content), el('small', null, `${r.name} · ${date}`));
+      return card;
+    }));
+  }
+
+  let rating = 5;
+  const pick = document.getElementById('rating-pick');
+  for (let i = 1; i <= 5; i++) {
+    const b = el('button', null, '★');
+    b.type = 'button';
+    b.setAttribute('role', 'radio');
+    b.setAttribute('aria-label', `${i}점`);
+    b.addEventListener('click', () => { rating = i; paintRating(); });
+    pick.append(b);
+  }
+  function paintRating() {
+    [...pick.children].forEach((b, i) => {
+      b.classList.toggle('on', i < rating);
+      b.setAttribute('aria-checked', i + 1 === rating);
+    });
+  }
+  paintRating();
+
+  // ── 폼 공통 처리 ──
+  function handleForm(form, { validate, submit, success }) {
+    const msg = form.querySelector('.form-msg');
+    const btn = form.querySelector('button[type=submit]');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      const problem = validate(data);
+      msg.className = 'form-msg' + (problem ? ' err' : '');
+      msg.textContent = problem || '보내는 중…';
+      if (problem) return;
+      btn.disabled = true;
+      try {
+        await submit(data);
+        form.reset();
+        msg.textContent = success;
+      } catch (err) {
+        console.error(err);
+        msg.className = 'form-msg err';
+        msg.textContent = '저장하지 못했어요. 잠시 후 다시 시도하거나 전화로 문의해 주세요.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+
+  handleForm(document.getElementById('review-form'), {
+    validate: d => !d.name.trim() ? '이름을 입력해 주세요.' : !d.content.trim() ? '후기 내용을 입력해 주세요.' : '',
+    submit: async d => {
+      await db('reviews', { method: 'POST', body: { name: d.name.trim(), rating, content: d.content.trim() } });
+      rating = 5;
+      paintRating();
+      await loadReviews().catch(() => {});
+    },
+    success: '후기가 등록됐어요. 감사합니다!'
+  });
+
+  const todayKST = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
+  document.querySelector('#inquiry-form [name=visit_date]').min = todayKST;
+
+  handleForm(document.getElementById('inquiry-form'), {
+    validate: d => {
+      if (!d.name.trim()) return '이름을 입력해 주세요.';
+      if (!/^[0-9-]{9,14}$/.test(d.phone.trim())) return '연락처는 숫자와 - 로만 입력해 주세요.';
+      if (!d.visit_date) return '방문 날짜를 선택해 주세요.';
+      if (d.visit_date < todayKST) return '오늘 이후 날짜를 선택해 주세요.';
+      const n = +d.party_size;
+      if (!(n >= 1 && n <= 100)) return '인원은 1~100명 사이로 입력해 주세요.';
+      if (!d.consent) return '개인정보 수집에 동의해 주세요.';
+      return '';
+    },
+    submit: d => db('inquiries', { method: 'POST', body: {
+      name: d.name.trim(), phone: d.phone.trim(), visit_date: d.visit_date,
+      party_size: +d.party_size, message: d.message.trim() || null
+    } }),
+    success: '문의가 접수됐어요. 확인 후 연락드릴게요!'
+  });
+
+  // ── 시작: 기본값으로 먼저 그리고, DB 데이터가 오면 교체 ──
+  renderHours();
+  updateStatus();
+  setInterval(updateStatus, 60 * 1000);
+
+  db('menu_items?select=name,price,category,is_recommended&is_available=eq.true&order=sort_order')
+    .then(renderMenu)
+    .catch(err => console.warn('메뉴를 불러오지 못해 기본 메뉴를 표시합니다.', err));
+  db('business_hours?select=*')
+    .then(rows => { if (rows.length) { hours = rows; renderHours(); updateStatus(); } })
+    .catch(err => console.warn('영업시간을 불러오지 못해 기본값을 표시합니다.', err));
+  loadReviews().catch(err => console.warn('후기를 불러오지 못했습니다.', err));
+
+  const toast = document.getElementById('toast');
+  document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copy);
+      toast.textContent = '주소를 복사했어요';
+    } catch {
+      toast.textContent = '복사하지 못했어요';
+    }
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1600);
+  }));
+</script>
+</body>
+</html>
